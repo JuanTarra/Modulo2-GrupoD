@@ -1,0 +1,598 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Kanban API",
+  "collectionId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+  "dateExported": "2026-10-05T23:18:38.000Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "1 - Flujo completo",
+      "containerId": "",
+      "created": "2026-10-05T23:18:38.000Z",
+      "sortNum": 10000
+    },
+    {
+      "_id": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "2 - Casos de error",
+      "containerId": "",
+      "created": "2026-10-05T23:18:38.000Z",
+      "sortNum": 20000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "ed5bbbe0-f563-4a9f-9099-a07163d84f1d",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "00 Health check",
+      "url": "http://localhost:3000/api/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "8e8b44ac-680b-4375-a5f9-1351cd966f1e",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "01 Crear tablero",
+      "url": "http://localhost:3000/api/boards",
+      "method": "POST",
+      "sortNum": 20000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{boardId}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Proyecto Web\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "f8e3d50b-fddc-4c87-8883-5c4d894b2bf6",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "02 Crear segundo tablero (para pruebas de aislamiento)",
+      "url": "http://localhost:3000/api/boards",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{otherBoardId}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Otro tablero\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "3c522136-b20d-4375-99e8-bd4f7c979086",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "03 Crear columna Que hacer",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns",
+      "method": "POST",
+      "sortNum": 40000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{columnId}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Qué hacer\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "bdaebba5-2a20-41df-a2ba-bf7c313d1adc",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "04 Crear columna Haciendo",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns",
+      "method": "POST",
+      "sortNum": 50000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{columnId2}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Haciendo\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "8f289b5b-386b-4bb7-8789-7ad6b9f36d82",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "05 Crear ticket en la columna",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId}}/tickets",
+      "method": "POST",
+      "sortNum": 60000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{ticketId}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Armar el login\",\n  \"description\": \"Pantalla de acceso\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "82edd6d8-2bc5-46ee-8d39-689507af0b02",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "06 Obtener tablero con columnas pobladas",
+      "url": "http://localhost:3000/api/boards/{{boardId}}",
+      "method": "GET",
+      "sortNum": 70000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "Qué hacer"
+        }
+      ]
+    },
+    {
+      "_id": "2f130aa8-56b6-4672-9b77-3f81168698ae",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "07 Actualizar contenido del ticket",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId}}/tickets/{{ticketId}}",
+      "method": "PATCH",
+      "sortNum": 80000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Armar el login (editado)\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "ff77b7a9-d947-4d90-865d-2427ebf05a3c",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "08 Repetir la misma actualizacion (idempotencia)",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId}}/tickets/{{ticketId}}",
+      "method": "PATCH",
+      "sortNum": 90000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Armar el login (editado)\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "479fd82f-b9ac-4364-ab92-f11252b9be6e",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "09 Mover ticket a la columna Haciendo",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId}}/tickets/{{ticketId}}",
+      "method": "PATCH",
+      "sortNum": 100000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"column\": \"{{columnId2}}\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "cd5089b1-1c9b-46d0-a957-babbb67271b6",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "10 Eliminar columna Haciendo (cascada borra sus tickets)",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId2}}",
+      "method": "DELETE",
+      "sortNum": 110000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "204"
+        }
+      ]
+    },
+    {
+      "_id": "17d882c3-ae0a-4953-ac54-6203eb2e585d",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "91112df4-05ca-484e-925d-8d942ed784ff",
+      "name": "11 Obtener tablero (la columna ya no esta)",
+      "url": "http://localhost:3000/api/boards/{{boardId}}",
+      "method": "GET",
+      "sortNum": 120000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "27584db7-53ba-4a83-992a-a3e7054773ba",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E01 Crear tablero sin name -> 400",
+      "url": "http://localhost:3000/api/boards",
+      "method": "POST",
+      "sortNum": 130000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      }
+    },
+    {
+      "_id": "06403311-398f-4365-8ade-f4587ddd8698",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E02 ID de tablero mal formado -> 400",
+      "url": "http://localhost:3000/api/boards/123",
+      "method": "GET",
+      "sortNum": 140000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "84f6220f-f85e-41ba-ba1a-eef452ec9f07",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E03 Tablero inexistente -> 404",
+      "url": "http://localhost:3000/api/boards/64b7f8a2c1d4e5f6a7b8c9d0",
+      "method": "GET",
+      "sortNum": 150000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "79e76ea3-5b20-4adc-9d41-afc980121443",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E04 Crear columna en tablero mal formado -> 400",
+      "url": "http://localhost:3000/api/boards/123/columns",
+      "method": "POST",
+      "sortNum": 160000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"x\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "f090ced0-3167-4a37-9847-1b890bef2e16",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E05 Crear columna en tablero inexistente -> 404",
+      "url": "http://localhost:3000/api/boards/64b7f8a2c1d4e5f6a7b8c9d0/columns",
+      "method": "POST",
+      "sortNum": 170000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"x\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "bb77489f-aa51-4bd0-99c3-59da40c2bec8",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E06 Crear columna sin title -> 400",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns",
+      "method": "POST",
+      "sortNum": 180000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      }
+    },
+    {
+      "_id": "1adc171c-4879-4e77-ae27-e23a326ef24d",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E07 Eliminar columna inexistente -> 404",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/64b7f8a2c1d4e5f6a7b8c9d0",
+      "method": "DELETE",
+      "sortNum": 190000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "65d99f8a-f957-4166-ad0b-d0f20c23c66d",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E08 Crear ticket sin title -> 400",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/{{columnId}}/tickets",
+      "method": "POST",
+      "sortNum": 200000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      }
+    },
+    {
+      "_id": "aac029d5-1c32-4ade-94d8-a4cd7cd4a561",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E09 Crear ticket en columna inexistente -> 404",
+      "url": "http://localhost:3000/api/boards/{{boardId}}/columns/64b7f8a2c1d4e5f6a7b8c9d0/tickets",
+      "method": "POST",
+      "sortNum": 210000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"x\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "ac2a2ca2-d2be-497e-8d67-80e8e66d4a48",
+      "colId": "4357fdb6-d803-4de4-b13e-93ccb4ffb646",
+      "containerId": "c252cf11-1fa9-47d0-b537-c96307507081",
+      "name": "E10 Columna de otro tablero (aislamiento) -> 404",
+      "url": "http://localhost:3000/api/boards/{{otherBoardId}}/columns/{{columnId}}/tickets",
+      "method": "POST",
+      "sortNum": 220000,
+      "created": "2026-10-05T23:18:38.000Z",
+      "modified": "2026-10-05T23:18:38.000Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"x\"\n}",
+        "form": []
+      }
+    }
+  ]
+}
