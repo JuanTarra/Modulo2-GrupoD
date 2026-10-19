@@ -16,5 +16,9 @@ const columnSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+// Al borrar una columna se borran sus tickets.
+columnSchema.pre('deleteOne', { document: true, query: false }, async function () {
+  const Ticket = require('./Ticket');
+  await Ticket.deleteMany({ column: this._id });
+});
 module.exports = mongoose.model('Column', columnSchema);
